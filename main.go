@@ -18,9 +18,10 @@ func args2config() (tail.Config, int64) {
 	flag.BoolVar(&config.ReOpen, "F", false, "follow, and track file rename/rotation")
 	flag.BoolVar(&config.Poll, "p", false, "use polling, instead of inotify")
 	flag.Parse()
-	if config.ReOpen {
-		config.Follow = true
-	}
+
+	config.Follow = true
+
+	config.Poll = true
 	config.MaxLineSize = maxlinesize
 	return config, n
 }
